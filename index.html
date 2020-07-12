@@ -37,7 +37,7 @@
         <svg width=300 height=300>
         </svg>
         <script>
-            var data = [4,8,15,16,23,42];
+            var data2 = [4,8,15,16,23,42];
             
             var height = 200
             var width = 300
@@ -48,7 +48,7 @@
             .append("g")
                 .attr("transform","translate("+margin+","+margin+")")
             .selectAll('rect')
-            .data(data)
+            .data(data2)
             .enter()
             .append("rect")
                 .attr("x", function(d,i) {return xs(d)})
