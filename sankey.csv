@@ -1,11 +1,11 @@
 source,target,value
-from minnesota,illinois,2
-illinois,wisconsin,2
-michigan,illinois,2
-illinois,indiana,2
-illinois,ohio,2
-arizona,illinois,2
-illinois,florida,3
-illinois,california,10
-illinois,to minnesota,5
-california,illinois,1
+minnesota,to illinois,2
+from illinois,wisconsin,2
+michigan,to illinois,2
+from illinois,indiana,2
+from illinois,ohio,2
+arizona,to illinois,2
+from illinois,florida,3
+from illinois,california,10
+from illinois,minnesota,5
+california,to illinois,1
