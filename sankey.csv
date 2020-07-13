@@ -2,7 +2,7 @@ source,target,value
 from arizona,illinois,2
 from california,illinois,1
 from michigan,illinois,2
-from minnesota,to illinois,2
+from minnesota,illinois,2
 illinois,to california,10
 illinois,to florida,3
 illinois,to indiana,2
