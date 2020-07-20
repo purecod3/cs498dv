@@ -1,0 +1,11 @@
+div {
+    width: 720px;
+    margin: 0 auto;
+}
+
+.center {
+    margin: auto;
+    width: 640px;
+    /* border: 1px solid black; */
+    text-align: center;
+}

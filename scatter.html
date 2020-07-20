@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>CS 498 Data Visualization Narrative Project</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+    </head>
+ 
+    <script src='https://d3js.org/d3.v5.min.js'></script>
+
+    <style>
+        circle {fill: lightgray; stroke: darkslategray;}
+    </style>
+
+    <body onload='init()'>
+      <div id="header">
+        <h1>2018 US Migration</h1>  
+        <p>
+          CS 498 Data Visualization Narrative Project, Summer 2020, Ed Pureza
+        </p>
+      </div>
+
+      <div id="narrative">
+        <h2 id="scene">Migration vs. Cost of Living</h1>
+        <p id="caption">Second graph is a scatter plot with cost of living index on the
+            x-axis and gain:lose ratio on the y-axis. For bonus, 
+            add size for property tax. For more bonus, add switchable size
+            parameter - income tax and transition.
+        </p>
+      </div>
+      <div id="graph" class="center">
+        <svg width=600 height=400></svg>
+      </div>
+      <div id="navigation" class="center">
+        <p>
+            Previous: <a href="index.html">Net Migration</a> | <span>Migration vs. Cost of Living</span> | Next: <a href="chord.html">Migration Details</a>
+        </p>
+      </div>
+
+      <script>
+        async function init() {
+
+        const data = await d3.csv("cli_migration_ratio.csv");
+        var x = d3.scaleLinear().domain([75,200]).range([0,500]);
+        var y = d3.scaleLinear().domain([0.5,1.75]).range([300,0]);
+        d3.select("svg")
+        .append("g")
+            .attr("transform","translate(50,50)")
+        .selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+            .attr("cx", function(d,i) {return x(d.CLI);})
+            .attr("cy", function(d,i) {return y(d.Ratio);})
+            .attr("r", function(d,i) {return +(d.Gain)/30000;});
+        d3.select("svg")
+        .append("g")
+            .attr("transform","translate(50,50)")
+            .call(d3.axisLeft(y)
+                    .tickValues([0.5, 0.75, 1.0, 1.25, 1.5, 1.75])
+                    // .tickFormat(d3.format("~s"))
+                );
+        d3.select("svg")
+        .append("g")
+            .attr("transform","translate(50,350)")
+            .call(d3.axisBottom(x)
+                    .tickValues([75, 100, 125, 150, 175, 200])
+                    // .tickFormat(d3.format("~s"))
+                );
+
+        // x axis title
+        d3.select("svg")
+            .append("text")
+            .attr("text-anchor","end")
+            .attr("x", 368)
+            .attr("y", 385)
+            .text("Cost of Living Index")
+                        
+        // y axis title
+        d3.select("svg")
+            .append("text")
+            .attr("text-anchor","end")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -105)
+            .attr("y", 15)
+            .text("Population Gain to Loss Ratio")
+        }   
+      </script>
+
+
+    </body>
+
+</html>
