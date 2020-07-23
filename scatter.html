@@ -7,7 +7,7 @@
     <script src='https://d3js.org/d3.v5.min.js'></script>
 
     <style>
-        circle {fill: lightgray; stroke: darkslategray;}
+        circle {fill: "#bdbdbd"; stroke: "#969696";}
     </style>
 
     <body onload='init()'>
@@ -50,7 +50,8 @@
         .append("circle")
             .attr("cx", function(d,i) {return x(d.CLI);})
             .attr("cy", function(d,i) {return y(d.Ratio);})
-            .attr("r", function(d,i) {return +(d.Gain)/30000;});
+            .attr("r", function(d,i) {return +(d.Gain)/30000;})
+            .attr("fill-opacity", 0.5);
         d3.select("svg")
         .append("g")
             .attr("transform","translate(50,50)")
@@ -59,7 +60,7 @@
                     // .tickFormat(d3.format("~s"))
                 );
         d3.select("svg")
-        .append("g")
+          .append("g")
             .attr("transform","translate(50,350)")
             .call(d3.axisBottom(x)
                     .tickValues([75, 100, 125, 150, 175, 200])
