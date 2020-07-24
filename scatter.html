@@ -39,6 +39,7 @@
         async function init() {
 
         const data = await d3.csv("cli_migration_ratio.csv");
+        console.log(data);
         var x = d3.scaleLinear().domain([75,200]).range([0,500]);
         var y = d3.scaleLinear().domain([0.5,1.75]).range([300,0]);
         d3.select("svg")
@@ -57,7 +58,7 @@
             .attr("transform","translate(50,50)")
             .call(d3.axisLeft(y)
                     .tickValues([0.5, 0.75, 1.0, 1.25, 1.5, 1.75])
-                    // .tickFormat(d3.format("~s"))
+                    .tickFormat(d3.format(".2f"))
                 );
         d3.select("svg")
           .append("g")

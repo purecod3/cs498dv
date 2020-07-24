@@ -3,48 +3,25 @@
         <title>CS 498 Data Visualization Narrative Project</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css">
     </head>
- 
-    <script src='https://d3js.org/d3.v5.min.js'></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
     <style>
-      /* body {
-          font: 10px sans-serif;
-      } */
+        body {
+            font: 10px sans-serif;
+        }
 
-      .group-tick line {
-          stroke: #000;
-      }
+        .group-tick line {
+            stroke: #000;
+        }
 
-      .ribbons {
-          fill-opacity: 0.67;
-      }
+        .ribbons {
+            fill-opacity: 0.67;
+        }
     </style>
     <body onload="init()">
-      <div id="header">
-        <h1>2018 US Migration</h1>  
-        <p>
-          CS 498 Data Visualization Narrative Project, Summer 2020, Ed Pureza
-        </p>  
-      </div>
+        <svg width="600" height="600"></svg>
+        <script>
 
-      <div id="narrative">
-        <h2 id="scene">Migration Details</h1>
-        <p id="caption">Third graph is a sankey graph that shows from where movers into
-          a selected state are coming from and where movers out of a selected
-          state are moving out to. Use drop down for selection.
-          Bonus - color code blocks as higher cost of living vs. lower Cost
-          of living.
-        </p>
-      </div>
-      <div id="graph" class="center">
-        <svg width=500 height=500></svg>
-      </div>
-      <div id="navigation" class="center">
-        <p>
-            Previous: <a href="scatter.html">Migration vs. Cost of Living</a> | <span>Migration Details</span>
-        </p>
-      </div>
-
-      <script>
             async function init() {
                 // const data = await d3.csv("chord_input.csv");
                 // console.log(data)
@@ -66,7 +43,7 @@
                     width = svg.attr("width"),
                     height = svg.attr("height"),
                     outerRadius = Math.min(width, height) * 0.5 - 40,
-                    innerRadius = outerRadius - 20;
+                    innerRadius = outerRadius - 30;
 
 
                 let color = d3.scaleOrdinal()
@@ -160,9 +137,6 @@
                 //     .text(d => formatValue(d.value));
 
             }
-      </script>
-
-
+        </script>
     </body>
-
 </html>
