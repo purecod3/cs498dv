@@ -21,15 +21,20 @@
 
       <div id="narrative">
         <h2 id="scene">Migration vs. Cost of Living</h1>
-        <p id="caption">Second graph is a scatter plot with cost of living index on the
-            x-axis and gain:lose ratio on the y-axis. For bonus, 
-            add size for property tax. For more bonus, add switchable size
-            parameter - income tax and transition.
+        <p id="caption">One of the motivating factors for 
+          moving to another state is the cost of living. The graph below shows 
+          that most states that are at or below the average cost of living index (CLI) of 100 
+          are experiencing population growth and states with higher cost of living indices 
+          are seeing their population decline through interstate migrations. There are, of course 
+          exceptions to this generality that reinforces the significance of other considerations 
+          for moving to a different state. Arizona which had the greatest population gain to loss ratio
+          had a CLI of 97 - far from the lowest CLI among all the states.
         </p>
       </div>
       <div id="graph" class="center">
         <svg width=600 height=400></svg>
       </div>
+      <div id="legend" class="center"></div>
       <div id="navigation" class="center">
         <p>
             Previous: <a href="index.html">Net Migration</a> | <span>Migration vs. Cost of Living</span> | Next: <a href="chord.html">Migration Details</a>
@@ -127,7 +132,67 @@
         d3.select("svg")
           .append("g")
             .style("font-size", "10px")
-            .call(makeAnnotations)           
+            .call(makeAnnotations)  
+
+        // legend
+
+
+        d3.select("#legend")
+          .append("svg")
+          .attr("height", 70)
+          .attr("width", 400)
+            .append("g")
+              .attr("transform","translate(160,-15)")
+              .selectAll("circle")
+              .data([100000, 250000, 500000])
+              .enter()
+              .append("circle")
+              .attr("cx", function(d,i) {return i * 40;})
+              .attr("cy", 40)
+              .attr("r", function(d,i) {return +(d)/30000;})
+              .attr("fill-opacity", 0.5);
+
+        d3.select("#legend")
+          .select("svg")
+          .append("g")
+          .attr("transform","translate(50,5)")
+          .append("text")
+            .attr("font-size", "10px")
+            .attr("x", 20)
+            .attr("y", 30)
+            .attr("text-anchor","middle")
+            .text("Outbound Migration Scale") 
+
+        d3.select("#legend")
+          .select("svg")
+          .append("g")
+            .attr("id","legendText")
+            .attr("transform","translate(140,30)")
+            .append("text")
+            .attr("font-size", "10px")
+            .attr("x", 20)
+            .attr("y", 30)
+            .attr("text-anchor","middle")
+            .text("100K") 
+
+        d3.select("#legendText")
+          .append("text")
+            .attr("font-size", "10px")
+            .attr("x", 60)
+            .attr("y", 30)
+            .attr("text-anchor","middle")
+            .text("250K") 
+
+        d3.select("#legendText")
+          .append("text")
+            .attr("font-size", "10px")
+            .attr("x", 100)
+            .attr("y", 30)
+            .attr("text-anchor","middle")
+            .text("500K") 
+
+
+
       </script>
 
 
