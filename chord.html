@@ -5,6 +5,9 @@
     </head>
  
     <script src='https://d3js.org/d3.v5.min.js'></script>
+    <!-- Load d3-annotation -->
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
     <style>
       /* body {
           font: 10px sans-serif;
@@ -37,7 +40,7 @@
       </div>
       <!-- <div id="tooltip"></div> -->
       <div id="graph" class="center">
-        <svg width=500 height=500></svg>
+        <svg width=600 height=500></svg>
       </div>
       <div id="legend" class="center"></div>
       <div id="navigation" class="center">
@@ -189,6 +192,32 @@
             .text(d => formatValue(d.value));
 
             // }
+
+        //annotations
+        const annotations = [
+          {
+            note: {
+              label: "Hover over the chord groups to see the prevalence of higher to lower cost of living migrations.",
+              title: "Migration Patterns",
+              wrap: 150
+            },
+            x: 0,
+            y: 450,
+            dy: 0,
+            dx: 0
+          }
+        ]
+
+        // Add annotation to the chart
+        const makeAnnotations = d3.annotation()
+          .annotations(annotations)
+
+        svg.append("g")
+          .style("font-size", "10px")
+          .call(makeAnnotations)
+
+
+
 
         // legend
         var legendscale = d3.schemeGreys[6];

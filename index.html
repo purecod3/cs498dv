@@ -7,6 +7,9 @@
     <script src='https://d3js.org/d3.v4.js'></script>
     <script src='https://d3js.org/topojson.v1.min.js'></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- Load d3-annotation -->
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
   
     <body>
       <div id="header">
@@ -24,7 +27,7 @@
         </p>
       </div>
       <div id="graph" class="center">
-        <svg width=600 height=400></svg>
+        <svg width=700 height=400></svg>
       </div>
       <div id="legend" class="center"></div>
       <div id="navigation" class="center"> 
@@ -137,6 +140,29 @@
               return format(legend.invertExtent(d)[0]);
             })
         }
+                // annotation
+        const annotations = [
+          {
+            note: {
+              label: "Arizona saw 1.5x more inbound than outbound migrations",
+              title: "Highest Migration Ratio",
+              wrap: 150
+            },
+            x: 165,
+            y: 257,
+            dy: 0,
+            dx: -10
+          }
+        ]
+
+        // Add annotation to the chart
+        const makeAnnotations = d3.annotation()
+          .annotations(annotations)
+
+        svg.append("g")
+          .style("font-size", "10px")
+          .call(makeAnnotations)
+
       </script>
 
 

@@ -5,6 +5,7 @@
     </head>
  
     <script src='https://d3js.org/d3.v5.min.js'></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
     <style>
         circle {fill: "#bdbdbd"; stroke: "#969696";}
@@ -88,7 +89,45 @@
             .attr("x", -200)
             .attr("y", 10)
             .text("Population Gain to Loss Ratio")
-        }   
+        }
+
+                // annotation
+        const annotations = [
+          {
+            note: {
+              label: "A cluster of states with the highest inbound to outbound migration ratios have cost of living indices \
+                      below the national average.",
+              title: "Highest Migration Ratios",
+              wrap: 150
+            },
+            x: 165,
+            y: 150,
+            dy: -40,
+            dx: 100
+          },{
+            note: {
+              label: "New York had the lowest inbound to outbound migration ratio and one of the highest CLIs. California, \
+                      DC, and Hawaii had higher CLIs, but higher ratios than NY. However, there were more people that moved out of \
+                      California than New York.",
+              title: "Lowest Migration Ratios",
+              wrap: 150
+            },
+            x: 307,
+            y: 328,
+            dy: -90,
+            dx: 60
+
+          }
+        ]
+
+        // Add annotation to the chart
+        const makeAnnotations = d3.annotation()
+          .annotations(annotations)
+
+        d3.select("svg")
+          .append("g")
+            .style("font-size", "10px")
+            .call(makeAnnotations)           
       </script>
 
 
