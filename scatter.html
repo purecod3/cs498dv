@@ -56,6 +56,7 @@
         d3.select("svg")
         .append("g")
             .attr("transform","translate(50,50)")
+            .style("font", "10px serif")
             .call(d3.axisLeft(y)
                     .tickValues([0.5, 0.75, 1.0, 1.25, 1.5, 1.75])
                     .tickFormat(d3.format(".2f"))
@@ -63,6 +64,7 @@
         d3.select("svg")
           .append("g")
             .attr("transform","translate(50,350)")
+            .style("font", "10px serif")
             .call(d3.axisBottom(x)
                     .tickValues([75, 100, 125, 150, 175, 200])
                     // .tickFormat(d3.format("~s"))
@@ -71,18 +73,20 @@
         // x axis title
         d3.select("svg")
             .append("text")
-            .attr("text-anchor","end")
-            .attr("x", 368)
+            .attr("text-anchor","middle")
+            .attr("font-size", "10px")
+            .attr("x", 300)
             .attr("y", 385)
             .text("Cost of Living Index")
                         
         // y axis title
         d3.select("svg")
             .append("text")
-            .attr("text-anchor","end")
+            .attr("text-anchor","middle")
+            .attr("font-size", "10px")
             .attr("transform", "rotate(-90)")
-            .attr("x", -105)
-            .attr("y", 15)
+            .attr("x", -200)
+            .attr("y", 10)
             .text("Population Gain to Loss Ratio")
         }   
       </script>
