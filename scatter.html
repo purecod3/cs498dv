@@ -83,7 +83,7 @@
             .attr("font-size", "10px")
             .attr("x", 300)
             .attr("y", 385)
-            .text("Cost of Living Index")
+            .text("Cost of Living Index");
                         
         // y axis title
         d3.select("svg")
@@ -93,8 +93,30 @@
             .attr("transform", "rotate(-90)")
             .attr("x", -200)
             .attr("y", 10)
-            .text("Population Gain to Loss Ratio")
+            .text("Population Gain to Loss Ratio");
+
+        // add line
+        d3.select("svg")
+          .append("line")
+          .attr("x1", x(112.6) )
+          .attr("x2", x(112.6) )
+          .attr("y1", y(1.52))
+          .attr("y2", y(0.3))
+          .attr("stroke", "grey")
+          .attr("stroke-dasharray", "4");
+
+        d3.select("svg")
+        .append("line")
+        .attr("x1", x(112.6) )
+        .attr("x2", x(88) )
+        .attr("y1", y(0.79))
+        .attr("y2", y(0.79))
+        .attr("stroke", "grey")
+        .attr("stroke-dasharray", "4");
+
         }
+
+
 
                 // annotation
         const annotations = [
@@ -159,7 +181,7 @@
           .append("text")
             .attr("font-size", "10px")
             .attr("x", 20)
-            .attr("y", 30)
+            .attr("y", 23)
             .attr("text-anchor","middle")
             .text("Outbound Migration Scale") 
 
