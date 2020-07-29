@@ -5,8 +5,6 @@
     </head>
  
     <script src='https://d3js.org/d3.v5.min.js'></script>
-    <!-- Load d3-annotation -->
-    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
     <style>
       /* body {
@@ -197,27 +195,23 @@
             // }
 
         //annotations
-        const annotations = [
-          {
-            note: {
-              label: "Hover over the chord groups to see the prevalence of higher to lower cost of living migrations.",
-              title: "Migration Patterns",
-              wrap: 150
-            },
-            x: 0,
-            y: 450,
-            dy: 0,
-            dx: 0
-          }
-        ]
 
-        // Add annotation to the chart
-        const makeAnnotations = d3.annotation()
-          .annotations(annotations)
+        var annotations2 = ["MIGRATION PATTERNS",
+                            "Hover over the chord groups to see",
+                            "the prevalence of higher to lower",
+                            "cost of living migrations."]
+        d3.select("svg")
+          .append("text")
+          .attr("x",5)
+          .attr("y",420)
+          .attr("font-size","10px")
+          .selectAll("tspan")
+          .data(annotations2)
+          .enter().append("tspan")
+          .attr("x", 5)
+          .attr("y", function(d,i) {return 420 + i*12;})
+          .text(function(d) {return d; });
 
-        svg.append("g")
-          .style("font-size", "10px")
-          .call(makeAnnotations)
 
 
 
