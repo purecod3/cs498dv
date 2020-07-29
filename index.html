@@ -60,14 +60,6 @@
           .domain([0.5, 0.75, 1.0, 1.25, 1.5])
           .range(d3.schemeGreys[6]);
 
-        // Load external data and boot
-        // d3.queue()
-        //   .defer(d3.json, "states-10m.json")
-        //   .defer(d3.csv, "cli_migration_ratio.csv", function(d) { data.set(d.State, +d.Ratio); })
-        //   .await(ready);
-
-        // console.log(data)
-
         Promise.all([
           d3.json("states-10m.json"),
           d3.csv("cli_migration_ratio.csv", function(d) {data.set(d.State, +d.Ratio);})
