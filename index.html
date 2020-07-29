@@ -4,9 +4,8 @@
         <link rel="stylesheet" type="text/css" href="mystyle.css">
     </head>
  
-    <script src='https://d3js.org/d3.v4.js'></script>
+    <script src='https://d3js.org/d3.v5.min.js'></script>
     <script src='https://d3js.org/topojson.v1.min.js'></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   
     <body>
       <div id="header">
@@ -62,17 +61,22 @@
           .range(d3.schemeGreys[6]);
 
         // Load external data and boot
-        d3.queue()
-          .defer(d3.json, "states-10m.json")
-          .defer(d3.csv, "cli_migration_ratio.csv", function(d) { data.set(d.State, +d.Ratio); })
-          .await(ready);
+        // d3.queue()
+        //   .defer(d3.json, "states-10m.json")
+        //   .defer(d3.csv, "cli_migration_ratio.csv", function(d) { data.set(d.State, +d.Ratio); })
+        //   .await(ready);
 
-        console.log(data)
-        function ready(error, topo) {
+        // console.log(data)
+
+        Promise.all([
+          d3.json("states-10m.json"),
+          d3.csv("cli_migration_ratio.csv", function(d) {data.set(d.State, +d.Ratio);})
+        ]).then(function(topo) {
+
           // Draw the map
-          console.log(topo);
+          console.log(topo[0]);
           
-          var states = topojson.feature(topo, topo.objects.states).features;
+          var states = topojson.feature(topo[0], topo[0].objects.states).features;
           console.log(states);
 
           svg.append("g")
@@ -87,7 +91,7 @@
               d.total = data.get(d.properties.name) || 0;
               return colorScale(d.total);
             });
-        }
+        });
 
         // annotations
         var annotations = ["HIGHEST MIGRATION RATIO", "Arizona saw 1.5x more \
